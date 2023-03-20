@@ -1,0 +1,37 @@
+﻿@model BusinessLayer.Models.Chart
+@using Newtonsoft.Json;
+@{
+
+    var datapoints = JsonConvert.SerializeObject(Model.DataPoints);
+}
+
+<div id="chartContainer" style="height: 400px; width: 60%;"></div>
+
+<script type="text/javascript">
+
+    $(document).ready(function (){
+		renderChart();
+    })
+
+	function renderChart() {
+        var chart = new CanvasJS.Chart("chartContainer", {
+			theme: '@Model.Theme',
+			exportEnabled: true,
+			animationEnabled: true,
+			title: {
+				text: '@Model.Title'
+			},
+			data: [
+				{
+					// Change type to "doughnut", "line", "splineArea", etc.
+					type: '@Model.Type',
+					toolTipContent: '@Model.ToolTipContent',
+					indexLabel: '@Model.IndexLabel',
+					dataPoints: @Html.Raw(datapoints)
+			}
+			]
+		});
+		chart.render();
+	};
+    
+</script>

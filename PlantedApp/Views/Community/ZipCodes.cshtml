@@ -1,0 +1,33 @@
+﻿@model List<ZipCode>
+@using BusinessLayer.Models;
+@{
+
+
+//var zipCodesPeapolis = Model.PeapolisCollection.GroupBy(x => x.Address.Zip).Select(x => new ZipCode { Code = x.Key.ToString(), Count = x.Count() }).ToList();
+//var zipCodesFruitstar = Model.FruitstarCollection.GroupBy(x => x.Address.Zip).Select(x => new ZipCode { Code = x.Key.ToString(), Count = x.Count() }).ToList();
+//var zipCodesSeeds = Model.SeedsCollection.GroupBy(x => x.PostCode).Select(x => new ZipCode { Code = x.Key, Count = x.Count() }).ToList();
+//var concatZipCodes = zipCodesPeapolis.Concat(zipCodesFruitstar).Concat(zipCodesSeeds);
+
+//var zipCodes = concatZipCodes
+//.GroupBy(x => x.Code)
+//.Select(g => new ZipCode {Code = g.Key, Count = g.Sum(p => p.Count) })
+//.ToList();
+
+
+
+}
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Zip code</th>
+        <th>Count </th>
+    </tr>
+    @foreach (var zipCode in Model.OrderByDescending(x => x.Count))
+    {
+        <tr>
+            <td>@zipCode.Code</td>
+            <td>@zipCode.Count</td>
+        </tr>
+
+    }
+</table>

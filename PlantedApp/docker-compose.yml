@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  plantedapp:
+    image: ${DOCKER_REGISTRY-}plantedapp
+    build:
+      context: .
+      dockerfile: Dockerfile

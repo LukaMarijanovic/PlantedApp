@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="/Scripts/jquery-3.4.1.js"></script>
+    @*<title>@ViewBag.Title - My ASP.NET Application</title>*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Application name", "Index", "Community", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="popout" href="#">Communities</a><ul class="level2 dropdown-menu">
+                            <li>@Html.ActionLink("Communities users", "Index", "Community")</li>
+                            <li>@Html.ActionLink("Communities percentage", "Communities", "Community", new { chartType = "usersPercentage" }, null)</li>
+                            <li>@Html.ActionLink("Communities active users", "Communities", "Community", new { chartType = "activeUsers" }, null)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="popout" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Peapolis and Fruitstar<span class="caret"></span></a>
+                        <ul class="level2 dropdown-menu">
+                            <li>@Html.ActionLink("Peapolis and Fruitstar users", "PeapolisAndFruitstar", "Community", new { chartType = "numberOfUsers" }, null)</li>
+                            <li>@Html.ActionLink("Peapolis and Fruitstar percentage", "PeapolisAndFruitstar", "Community", new { chartType = "usersPercentage" }, null)</li>
+                            <li>@Html.ActionLink("Peapolis and Fruitstar active users", "PeapolisAndFruitstar", "Community", new { chartType = "activeUsers" }, null)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="popout" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Peapolis and Seeds<span class="caret"></span></a>
+                        <ul class="level2 dropdown-menu">
+                            <li>@Html.ActionLink("Peapolis and Seeds users", "PeapolisAndSeeds", "Community", new { chartType = "numberOfUsers" }, null)</li>
+                            <li>@Html.ActionLink("Peapolis and Seeds percentage", "PeapolisAndSeeds", "Community", new { chartType = "usersPercentage" }, null)</li>
+                            <li>@Html.ActionLink("Peapolis and Seeds active users", "PeapolisAndSeeds", "Community", new { chartType = "activeUsers" }, null)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="popout" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fruitstar and Seeds<span class="caret"></span></a>
+                        <ul class="level2 dropdown-menu">
+                            <li>@Html.ActionLink("Fruitstar and Seeds", "FruitstarAndSeeds", "Community", new { chartType = "numberOfUsers" }, null)</li>
+                            <li>@Html.ActionLink("Fruitstar and Seeds percentage", "FruitstarAndSeeds", "Community", new { chartType = "usersPercentage" }, null)</li>
+                            <li>@Html.ActionLink("Fruitstar and Seeds active users", "FruitstarAndSeeds", "Community", new { chartType = "activeUsers" }, null)</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Zip codes", "ZipCodes", "Community")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            debugger
+            //Remove the style attributes.
+            $(".navbar-nav li, .navbar-nav a, .navbar-nav ul").removeAttr('style');
+
+            //Apply the Bootstrap class to the Submenu.
+            $(".dropdown-menu").closest("li").removeClass().addClass("dropdown-toggle");
+
+            //Apply the Bootstrap properties to the Submenu.
+            $(".dropdown-toggle").find("a").eq(0).attr("data-toggle", "dropdown").attr("aria-haspopup", "true").attr("aria-expanded", "false").append("<span class='caret'></span>");
+
+            //Apply the Bootstrap "active" class to the selected Menu item.
+            $("a.selected").closest("li").addClass("active");
+            $("a.selected").closest(".dropdown-toggle").addClass("active");
+        });
+    </script>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
